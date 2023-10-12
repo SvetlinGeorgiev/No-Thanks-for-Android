@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">No Thanks for Android</string>
+    <string name="redirect_activity_is_missing_message">Redirect activity is missing!</string>
+</resources>
