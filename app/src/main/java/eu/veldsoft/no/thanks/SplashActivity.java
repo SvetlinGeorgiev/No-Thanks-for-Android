@@ -8,6 +8,9 @@ import android.widget.Toast;
 
 import android.os.Bundle;
 
+/**
+ * ???
+ */
 public class SplashActivity extends AppCompatActivity {
     /**
      * Timeout to switch to product functional screens.
@@ -19,13 +22,28 @@ public class SplashActivity extends AppCompatActivity {
      */
     private String redirect = "";
 
+    /**
+     * ???
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+         * Set the theme for this activity. Replace 'ntfa' with your actual theme name.
+         */
+        setTheme(R.style.no_thanks_theme);
+
+        /*
+         * Call the superclass's onCreate method to perform necessary initialization.
+         */
         super.onCreate(savedInstanceState);
+
+        /*
+         *  Set the content view of this activity to the layout defined in 'activity_splash.xml'.
+         */
         setContentView(R.layout.activity_splash);
 
         /*
-         * Activate JavaScript.
+         * Activate JavaScript for a WebView with the ID 'ads'.
          */
         ((WebView) findViewById(R.id.ads)).getSettings().setJavaScriptEnabled(
                 true);
@@ -37,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                 .loadUrl("file:///android_asset/banner.html");
 
         /*
-         * Get splash screen timeout.
+         * Get the splash screen timeout from the AndroidManifest.xml metadata.
          */
         try {
             timeout = getPackageManager().getActivityInfo(
@@ -46,11 +64,14 @@ public class SplashActivity extends AppCompatActivity {
                             | PackageManager.GET_META_DATA).metaData.getInt(
                     "timeout", 0);
         } catch (Exception e) {
+            /*
+             * If an exception occurs, set the timeout to 0.
+             */
             timeout = 0;
         }
 
         /*
-         * Get splash screen timeout.
+         * Get the splash screen timeout.
          */
         try {
             timeout = getPackageManager().getActivityInfo(
@@ -59,6 +80,9 @@ public class SplashActivity extends AppCompatActivity {
                             | PackageManager.GET_META_DATA).metaData.getInt(
                     "timeout", 0);
         } catch (Exception e) {
+            /*
+             * If an exception occurs, set the timeout to 0.
+             */
             timeout = 0;
         }
 
@@ -72,6 +96,10 @@ public class SplashActivity extends AppCompatActivity {
                                     | PackageManager.GET_META_DATA).metaData
                     .getString("redirect");
         } catch (Exception e) {
+            /*
+             * If an exception occurs, set the 'redirect' to this activity's class name
+             * and show a Toast message indicating the redirect activity is missing.
+             */
             redirect = this.getClass().toString();
             Toast.makeText(
                     this,
