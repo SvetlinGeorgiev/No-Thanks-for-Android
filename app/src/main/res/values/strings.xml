@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">No Thanks for Android</string>
     <string name="redirect_activity_is_missing_message">Redirect activity is missing!</string>
+    <string name="about_text">TODO About game.</string>
+    <string name="help_text">TODO Game help.</string>
+    <string name="single_player_game_label">Single Player Game</string>
+    <string name="join_multiplayer_game_label">Join Multiplayer Game</string>
+    <string name="host_multiplayer_game_label">Host Multiplayer Game</string>
+    <string name="exit_game_label">Exit Game</string>
 </resources>

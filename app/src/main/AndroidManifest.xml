@@ -13,13 +13,22 @@
         android:theme="@style/no_thanks_theme"
         tools:targetApi="31">
         <activity
+            android:name=".GameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".MenuActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/no_thanks_theme"
             android:exported="true"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/no_thanks_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

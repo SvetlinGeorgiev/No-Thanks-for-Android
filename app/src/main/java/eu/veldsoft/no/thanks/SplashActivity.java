@@ -1,15 +1,18 @@
 package eu.veldsoft.no.thanks;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.webkit.WebView;
 import android.widget.Toast;
 
-import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
- * ???
+ * Initial splash screen.
  */
 public class SplashActivity extends AppCompatActivity {
     /**
@@ -23,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     private String redirect = "";
 
     /**
-     * ???
+     * {@inheritDoc}
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,5 +110,27 @@ public class SplashActivity extends AppCompatActivity {
                             R.string.redirect_activity_is_missing_message),
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        /*
+         * On resume there is no need to show the ads.
+         */
+        new Timer().schedule(new TimerTask() {
+            public void run() {
+                try {
+                    startActivity(new Intent(SplashActivity.this, Class
+                            .forName(redirect)));
+                } catch (Exception e) {
+                }
+            }
+        }, timeout);
     }
 }
