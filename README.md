@@ -8,5 +8,6 @@
 [![Open Source Helpers](https://www.codetriage.com/svetlingeorgiev/no-thanks-for-android/badges/users.svg)](https://www.codetriage.com/svetlingeorgiev/no-thanks-for-android) 
 [![Coverage Status](https://codecov.io/gh/SvetlinGeorgiev/No-Thanks-for-Android/branch/master/graph/badge.svg)](https://codecov.io/gh/SvetlinGeorgiev/No-Thanks-for-Android) 
 [![Coverity status](https://scan.coverity.com/projects/17593/badge.svg)](https://scan.coverity.com/projects/no-thanks-for-android) 
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=SvetlinGeorgiev_No-Thanks-for-Android&metric=alert_status)](https://sonarcloud.io/dashboard?id=SvetlinGeorgiev_No-Thanks-for-Android)
 
 No Thanks! for Android card game.
