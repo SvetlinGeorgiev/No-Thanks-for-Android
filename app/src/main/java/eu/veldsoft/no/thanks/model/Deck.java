@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents the deck of cards, available in the game.
+ */
 public class Deck {
     /**
      * List of cards.
      */
     private static final List<Card> cards = new ArrayList<Card>();
 
-    /**/ {
+    /*
+     *  Declaring the cards from 3 to 35
+     */ {
         cards.add(new Card(3));
         cards.add(new Card(4));
         cards.add(new Card(5));

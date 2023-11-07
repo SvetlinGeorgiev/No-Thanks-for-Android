@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Represents the players.
+ */
 class Player {
     /**
      * The name of the player.
      */
     private String name = "";
 
+    /**
+     * The number of chips.
+     */
     private int chips = 0;
 
     /**

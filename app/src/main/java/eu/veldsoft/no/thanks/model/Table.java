@@ -29,7 +29,13 @@ public class Table {
      * @throws RuntimeException A setup failure.
      */
     public void setup() throws RuntimeException {
+        /*
+         * Shuffles the deck.
+         */
         Deck.shuffle();
+        /*
+         * Removes 9 random cards from the deck.
+         */
         cards = Deck.deal(-9);
 
         /*
@@ -53,7 +59,9 @@ public class Table {
             p.setup();
             p.chips(chips);
         }
-
+        /*
+         * Shuffles the order of players.
+         */
         //TODO It is better each player to be able to be in each order.
         Collections.shuffle(players);
 
