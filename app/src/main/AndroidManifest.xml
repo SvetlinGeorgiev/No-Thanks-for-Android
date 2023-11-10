@@ -13,6 +13,9 @@
         android:theme="@style/no_thanks_theme"
         tools:targetApi="31">
         <activity
+            android:name=".PlayersActivity"
+            android:exported="false" />
+        <activity
             android:name=".GameActivity"
             android:exported="false" />
         <activity

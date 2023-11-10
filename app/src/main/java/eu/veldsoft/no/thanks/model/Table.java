@@ -88,4 +88,14 @@ public class Table {
     public Player playing() {
         return playing;
     }
+
+    /**
+     * Start new game.
+     *
+     * @param names Players' names.
+     * @return True if the game starts successfully, false otherwise.
+     */
+    public boolean newGame(String[] names) {
+        return false;
+    }
 }

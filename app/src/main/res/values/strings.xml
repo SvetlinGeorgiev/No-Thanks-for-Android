@@ -44,4 +44,8 @@ Sofia, Bulgaria
     <string name="end_report_menu">End Report</string>
     <string name="end_turn_menu">End Turn</string>
     <string name="exit_menu">Exit</string>
+    <string name="take_card_caption">Take Card</string>
+    <string name="no_thanks_caption">No Thanks!</string>
+    <string name="players_list_done_caption">Players List Done</string>
+    <string name="game_was_not_started_message">Game was not started!</string>
 </resources>
