@@ -4,12 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import eu.veldsoft.no.thanks.model.Table;
 
@@ -23,9 +28,14 @@ public class GameActivity extends AppCompatActivity {
     private static final int LAUNCH_PLAYERS_LIST_ACTIVITY = 1;
 
     /**
+     * Map of the card key and card image.
+     */
+    static final Map<String, Integer> CARDS_IMAGES = new HashMap<String, Integer>();
+
+    /**
      * Table object as mediator with the model.
      */
-    private Table table = null;
+    private Table table = new Table();
 
     /**
      * {@inheritDoc}
@@ -34,6 +44,46 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        /*
+         * Map card keys to card image resource identifiers.
+         */
+        if (CARDS_IMAGES.size() == 0) {
+            CARDS_IMAGES.put("00", R.drawable.background);
+            CARDS_IMAGES.put("03", R.drawable.card03);
+            CARDS_IMAGES.put("04", R.drawable.card04);
+            CARDS_IMAGES.put("05", R.drawable.card05);
+            CARDS_IMAGES.put("06", R.drawable.card06);
+            CARDS_IMAGES.put("07", R.drawable.card07);
+            CARDS_IMAGES.put("08", R.drawable.card08);
+            CARDS_IMAGES.put("09", R.drawable.card09);
+            CARDS_IMAGES.put("10", R.drawable.card10);
+            CARDS_IMAGES.put("11", R.drawable.card11);
+            CARDS_IMAGES.put("12", R.drawable.card12);
+            CARDS_IMAGES.put("13", R.drawable.card13);
+            CARDS_IMAGES.put("14", R.drawable.card14);
+            CARDS_IMAGES.put("15", R.drawable.card15);
+            CARDS_IMAGES.put("16", R.drawable.card16);
+            CARDS_IMAGES.put("17", R.drawable.card17);
+            CARDS_IMAGES.put("18", R.drawable.card18);
+            CARDS_IMAGES.put("19", R.drawable.card19);
+            CARDS_IMAGES.put("20", R.drawable.card20);
+            CARDS_IMAGES.put("21", R.drawable.card21);
+            CARDS_IMAGES.put("22", R.drawable.card22);
+            CARDS_IMAGES.put("23", R.drawable.card23);
+            CARDS_IMAGES.put("24", R.drawable.card24);
+            CARDS_IMAGES.put("25", R.drawable.card25);
+            CARDS_IMAGES.put("26", R.drawable.card26);
+            CARDS_IMAGES.put("27", R.drawable.card27);
+            CARDS_IMAGES.put("28", R.drawable.card28);
+            CARDS_IMAGES.put("29", R.drawable.card29);
+            CARDS_IMAGES.put("30", R.drawable.card30);
+            CARDS_IMAGES.put("31", R.drawable.card31);
+            CARDS_IMAGES.put("32", R.drawable.card32);
+            CARDS_IMAGES.put("33", R.drawable.card33);
+            CARDS_IMAGES.put("34", R.drawable.card34);
+            CARDS_IMAGES.put("35", R.drawable.card35);
+        }
     }
 
     /**
@@ -50,9 +100,11 @@ public class GameActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /**
+         * Check which the selected item is in the options menu and depending on that star that activity
+         */
         if (item.getItemId() == R.id.new_game) {
             startActivityForResult(new Intent(GameActivity.this, PlayersActivity.class), LAUNCH_PLAYERS_LIST_ACTIVITY);
-            //findViewById(R.id.table).setVisibility(View.VISIBLE);
         }
 
         if (item.getItemId() == R.id.save_game) {
@@ -68,7 +120,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.player_report) {
-
+            startActivity(new Intent(GameActivity.this, PlayerReportActivity.class).putExtra("report", table.currentPlayerReport()));
         }
 
         if (item.getItemId() == R.id.end_report) {
@@ -83,7 +135,7 @@ public class GameActivity extends AppCompatActivity {
             startActivity(new Intent(GameActivity.this, AboutActivity.class));
         }
 
-        if (item.getItemId() == R.id.exitt) {
+        if (item.getItemId() == R.id.exit) {
             GameActivity.this.finish();
         }
 
@@ -103,10 +155,17 @@ public class GameActivity extends AppCompatActivity {
         if (resultCode != RESULT_OK) {
             return;
         }
-
+        /*
+         * Check if the result comes from launching the PlayersActivity
+         */
         if (requestCode == LAUNCH_PLAYERS_LIST_ACTIVITY) {
+            /*
+             * Initialize a list to store player names
+             */
             List<String> names = new ArrayList<String>();
-
+            /*
+             * Check each player's status and add their name to the list if enabled
+             */
             if (data.getBooleanExtra("player1Enabled", false)) {
                 names.add(data.getCharSequenceExtra("player1Name").toString());
             }
@@ -132,9 +191,34 @@ public class GameActivity extends AppCompatActivity {
             /*
              * Convert the list of names to array of names.
              */
-            if (table.newGame(names.toArray(new String[0])) == false) {
+            if (table.newGame(names.toArray(new String[names.size()])) == false) {
                 Toast.makeText(GameActivity.this, R.string.game_was_not_started_message, Toast.LENGTH_LONG).show();
             }
+
+            findViewById(R.id.table).setVisibility(View.VISIBLE);
         }
+
+        redraw();
+    }
+
+
+    /**
+     * After change in the object model the user interface should be updated.
+     */
+    void redraw() {
+        /*
+         * Set title of the screen with info for the gameplay.
+         */
+        setTitle(table.currentPlayerInfo());
+
+        /*
+         * Visualize the current chips on the card.
+         */
+        ((TextView) findViewById(R.id.currentChips)).setText("" + table.currentChips());
+
+        /*
+         * Visualize the current card on the table.
+         */
+        ((ImageView) findViewById(R.id.currentCard)).setImageResource(CARDS_IMAGES.get(table.currentCardKey()));
     }
 }

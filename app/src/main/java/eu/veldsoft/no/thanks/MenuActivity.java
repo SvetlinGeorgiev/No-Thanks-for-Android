@@ -18,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /*
-         * Call the superclass's onCreate method to perform necessary initialization.
+         * Call the super class's onCreate method to perform necessary initialization.
          */
         super.onCreate(savedInstanceState);
 
@@ -34,8 +34,7 @@ public class MenuActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(MenuActivity.this, GameActivity.class);
-                        startActivity(intent);
+                        startActivity(new Intent(MenuActivity.this, GameActivity.class));
                     }
                 }
         );
@@ -47,8 +46,7 @@ public class MenuActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        Intent intent = new Intent(MenuActivity.this, JoinActivity.class);
-//                        startActivity(intent);
+//                        startActivity(new Intent(MenuActivity.this, JoinActivity.class));
                     }
                 }
         );
@@ -60,8 +58,7 @@ public class MenuActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        Intent intent = new Intent(MenuActivity.this, HostActivity.class);
-//                        startActivity(intent);
+//                        startActivity(new Intent(MenuActivity.this, HostActivity.class));
                     }
                 }
         );

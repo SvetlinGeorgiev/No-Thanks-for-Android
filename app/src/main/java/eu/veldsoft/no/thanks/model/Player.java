@@ -33,11 +33,12 @@ class Player {
     }
 
     /**
-     * Setup initial player components.
+     * Player's name getter.
+     *
+     * @return Name of the player.
      */
-    void setup() {
-        chips = 0;
-        cards.clear();
+    String name() {
+        return name;
     }
 
     /**
@@ -56,6 +57,15 @@ class Player {
      */
     int chips() {
         return chips;
+    }
+
+
+    /**
+     * Setup initial player components.
+     */
+    void setup() {
+        chips = 0;
+        cards.clear();
     }
 
     /**
@@ -86,5 +96,38 @@ class Player {
         //TODO Check the correctness of points calculation.
 
         return points - chips;
+    }
+
+    /**
+     * Text report for the player state.
+     *
+     * @return Report text.
+     */
+    String report() {
+        String text = "";
+
+        text += name;
+        text += "\n";
+        text += "=== === ===";
+        text += "\n";
+        text += "Chips:";
+        text += "\t";
+        text += chips();
+        text += "\n";
+        text += "=== === ===";
+        text += "\n";
+
+        text += "Cards:";
+        text += "\t";
+        if (cards.size() > 0) {
+            for (Card card : cards) {
+                text += "\t";
+                text += card.key();
+            }
+            text += "=== === ===";
+            text += "\n";
+        }
+
+        return text;
     }
 }

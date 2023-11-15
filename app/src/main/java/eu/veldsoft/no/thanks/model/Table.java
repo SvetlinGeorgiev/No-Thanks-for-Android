@@ -9,6 +9,11 @@ import java.util.List;
  */
 public class Table {
     /**
+     * Number of chips on the table.
+     */
+    int chips = 0;
+
+    /**
      * Deck with the cards.
      */
     private List<Card> cards = new ArrayList<Card>();
@@ -33,6 +38,7 @@ public class Table {
          * Shuffles the deck.
          */
         Deck.shuffle();
+
         /*
          * Removes 9 random cards from the deck.
          */
@@ -59,6 +65,7 @@ public class Table {
             p.setup();
             p.chips(chips);
         }
+
         /*
          * Shuffles the order of players.
          */
@@ -96,6 +103,66 @@ public class Table {
      * @return True if the game starts successfully, false otherwise.
      */
     public boolean newGame(String[] names) {
-        return false;
+        /*
+         * Number of players is regulated by the game's rules.
+         */
+        if (names == null || names.length < 3 || 7 < names.length) {
+            return false;
+        }
+
+        /*
+         * The maximum number of players is 6.
+         */
+        players.clear();
+        for (String name : names) {
+            players.add(new Player(name));
+        }
+
+        /*
+         * Setup of a new game.
+         */
+        setup();
+
+        return true;
+    }
+
+    /**
+     * Get name of the current playing player.
+     *
+     * @return The name of the player.
+     */
+    public String currentPlayerInfo() {
+        return playing.name();
+    }
+
+    /**
+     * Get report of the current playing player.
+     *
+     * @return The report of the player.
+     */
+    public String currentPlayerReport() {
+        return playing.report();
+    }
+
+    /**
+     * Get current card on the table key.
+     *
+     * @return Key of the card.
+     */
+    public String currentCardKey() {
+        if (cards.size() == 0) {
+            return "00";
+        }
+
+        return cards.get(0).key();
+    }
+
+    /**
+     * Get current number of chips on the table.
+     *
+     * @return Number of chips.
+     */
+    public int currentChips() {
+        return chips;
     }
 }
