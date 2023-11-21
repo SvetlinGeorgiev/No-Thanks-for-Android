@@ -3,6 +3,7 @@
     <item
         android:id="@+id/new_game"
         android:title="@string/new_game_menu" />
+    <!--
     <item
         android:id="@+id/save_game"
         android:title="@string/save_game_menu" />
@@ -12,6 +13,7 @@
     <item
         android:id="@+id/end_turn"
         android:title="@string/end_turn_menu" />
+    -->
     <item
         android:id="@+id/player_report"
         android:title="@string/player_report_menu" />

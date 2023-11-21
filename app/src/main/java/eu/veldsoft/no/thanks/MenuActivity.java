@@ -42,6 +42,7 @@ public class MenuActivity extends AppCompatActivity {
         /*
          *  Start host screen for multiplayer game.
          */
+        findViewById(R.id.join_game).setVisibility(View.INVISIBLE);
         findViewById(R.id.join_game).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -54,6 +55,7 @@ public class MenuActivity extends AppCompatActivity {
         /*
          *  Start host screen for multiplayer game.
          */
+        findViewById(R.id.host_game).setVisibility(View.INVISIBLE);
         findViewById(R.id.host_game).setOnClickListener(
                 new View.OnClickListener() {
                     @Override

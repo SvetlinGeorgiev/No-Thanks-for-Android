@@ -84,6 +84,44 @@ public class GameActivity extends AppCompatActivity {
             CARDS_IMAGES.put("34", R.drawable.card34);
             CARDS_IMAGES.put("35", R.drawable.card35);
         }
+
+        /*
+         * Take the card by the current player listener.
+         */
+        findViewById(R.id.takeIt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (table.finished() == true) {
+                    Toast.makeText(GameActivity.this, R.string.the_game_finished_message, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                table.takeIt();
+                table.endTurn();
+
+                redraw();
+            }
+        });
+
+        /*
+         * Take the card by the current player listener.
+         */
+        findViewById(R.id.noThanks).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (table.finished() == true) {
+                    Toast.makeText(GameActivity.this, R.string.the_game_finished_message, Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                table.noThanks();
+                table.endTurn();
+
+                redraw();
+            }
+        });
+
+        redraw();
     }
 
     /**
@@ -107,6 +145,7 @@ public class GameActivity extends AppCompatActivity {
             startActivityForResult(new Intent(GameActivity.this, PlayersActivity.class), LAUNCH_PLAYERS_LIST_ACTIVITY);
         }
 
+        /*
         if (item.getItemId() == R.id.save_game) {
 
         }
@@ -116,15 +155,15 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.end_turn) {
-
         }
+        */
 
-        if (item.getItemId() == R.id.player_report) {
+        if (item.getItemId() == R.id.player_report && table.inProgress() == true) {
             startActivity(new Intent(GameActivity.this, PlayerReportActivity.class).putExtra("report", table.currentPlayerReport()));
         }
 
-        if (item.getItemId() == R.id.end_report) {
-
+        if (item.getItemId() == R.id.end_report && table.inProgress() == true) {
+            startActivity(new Intent(GameActivity.this, FinalReportActivity.class).putExtra("report", table.finalReport()));
         }
 
         if (item.getItemId() == R.id.help) {
@@ -194,7 +233,9 @@ public class GameActivity extends AppCompatActivity {
             if (table.newGame(names.toArray(new String[names.size()])) == false) {
                 Toast.makeText(GameActivity.this, R.string.game_was_not_started_message, Toast.LENGTH_LONG).show();
             }
-
+            /*
+             * Sets the visibility of the game elements to visible
+             */
             findViewById(R.id.table).setVisibility(View.VISIBLE);
         }
 
@@ -206,19 +247,23 @@ public class GameActivity extends AppCompatActivity {
      * After change in the object model the user interface should be updated.
      */
     void redraw() {
-        /*
-         * Set title of the screen with info for the gameplay.
-         */
-        setTitle(table.currentPlayerInfo());
+        if (table.inProgress() == false) {
+            this.setTitle(getString(R.string.start_new_game_text));
+        } else {
+            /*
+             * Set title of the screen with info for the gameplay.
+             */
+            setTitle(table.currentPlayerInfo());
 
-        /*
-         * Visualize the current chips on the card.
-         */
-        ((TextView) findViewById(R.id.currentChips)).setText("" + table.currentChips());
+            /*
+             * Visualize the current chips on the card.
+             */
+            ((TextView) findViewById(R.id.currentChips)).setText("" + table.currentChips());
 
-        /*
-         * Visualize the current card on the table.
-         */
-        ((ImageView) findViewById(R.id.currentCard)).setImageResource(CARDS_IMAGES.get(table.currentCardKey()));
+            /*
+             * Visualize the current card on the table.
+             */
+            ((ImageView) findViewById(R.id.currentCard)).setImageResource(CARDS_IMAGES.get(table.currentCardKey()));
+        }
     }
 }

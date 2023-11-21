@@ -48,4 +48,6 @@ Sofia, Bulgaria
     <string name="no_thanks_caption">No Thanks!</string>
     <string name="players_list_done_caption">Players List Done</string>
     <string name="game_was_not_started_message">Game was not started!</string>
+    <string name="the_game_finished_message">The game finished!</string>
+    <string name="start_new_game_text">Start new game!</string>
 </resources>

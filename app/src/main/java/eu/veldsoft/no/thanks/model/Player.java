@@ -89,13 +89,39 @@ class Player {
                     break;
                 }
             }
-
             points += cards.get(i).number();
             i = j;
         }
         //TODO Check the correctness of points calculation.
-
+        /*
+         * Points from chips taken into account.
+         */
         return points - chips;
+    }
+
+    /**
+     * Throw out chip.
+     *
+     * @return How many chips.
+     */
+    int pass() {
+        if (chips <= 0) {
+            return 0;
+        }
+
+        chips--;
+        return 1;
+    }
+
+    /**
+     * Player take the card and the chips from the table.
+     *
+     * @param chips Amount of chips.
+     * @param card  Top card from the deck on the table.
+     */
+    void take(int chips, Card card) {
+        this.chips += chips;
+        cards.add(card);
     }
 
     /**
@@ -124,9 +150,15 @@ class Player {
                 text += "\t";
                 text += card.key();
             }
-            text += "=== === ===";
-            text += "\n";
         }
+        text += "\n";
+        text += "=== === ===";
+        text += "\n";
+
+        text += "Score:";
+        text += "\t";
+        text += score();
+        text += "\n";
 
         return text;
     }

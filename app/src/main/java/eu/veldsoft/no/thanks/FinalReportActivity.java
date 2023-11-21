@@ -5,17 +5,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PlayerReportActivity extends AppCompatActivity {
+public class FinalReportActivity extends AppCompatActivity {
 
-    /**
-     * {@inheritDoc}
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player_report);
+        setContentView(R.layout.activity_final_report);
     }
 
     /**
@@ -25,6 +20,6 @@ public class PlayerReportActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        ((TextView) findViewById(R.id.playerReportText)).setText(getIntent().getStringExtra("report"));
+        ((TextView) findViewById(R.id.finalReportText)).setText(getIntent().getStringExtra("report"));
     }
 }

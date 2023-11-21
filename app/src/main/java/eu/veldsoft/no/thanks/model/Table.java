@@ -145,6 +145,43 @@ public class Table {
     }
 
     /**
+     * Report state of the table at the end of the game.
+     *
+     * @return The report of the table.
+     */
+    public String finalReport() {
+        String text = "";
+
+        for (Player p : players) {
+            text += p.report();
+            text += "=== === ===";
+            text += "\n";
+            text += "\n";
+        }
+
+        text += "The winner is: ";
+        text += "\t";
+
+        int min = players.get(0).score();
+        for (Player p : players) {
+            if (p.score() < min) {
+                min = p.score();
+            }
+        }
+
+        for (Player p : players) {
+            if (p.score() > min) {
+                continue;
+            }
+
+            text += p.name();
+            text += "\t";
+        }
+
+        return text.trim();
+    }
+
+    /**
      * Get current card on the table key.
      *
      * @return Key of the card.
@@ -164,5 +201,59 @@ public class Table {
      */
     public int currentChips() {
         return chips;
+    }
+
+    /**
+     * Current player take the card and the chips.
+     */
+    public void takeIt() {
+        if (cards.size() <= 0) {
+            //TODO Find better reporting of game end.
+            return;
+        }
+
+        playing.take(chips, cards.get(0));
+        cards.remove(0);
+        chips = 0;
+    }
+
+    /**
+     * Current player discard to take the card.
+     */
+    public void noThanks() {
+        int taken = playing.pass();
+
+        if (taken == 0) {
+            takeIt();
+        } else if (taken == 1) {
+            chips += taken;
+        }
+    }
+
+    /**
+     * Finalize player's turn.
+     */
+    public void endTurn() {
+        //TODO Make next player as function.
+        int index = players.indexOf(playing);
+        playing = players.get((index + 1) % players.size());
+    }
+
+    /**
+     * Get game in progress flag.
+     *
+     * @return True if the game is in progress, false otherwise.
+     */
+    public boolean inProgress() {
+        return players.size() > 0;
+    }
+
+    /**
+     * Get finished game flag.
+     *
+     * @return True if the game is over, false otherwise.
+     */
+    public boolean finished() {
+        return cards.size() <= 0;
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Represents the deck of cards, available in the game.
  */
-public class Deck {
+class Deck {
     /**
      * List of cards.
      */
