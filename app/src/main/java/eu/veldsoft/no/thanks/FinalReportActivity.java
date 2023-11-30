@@ -5,6 +5,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Screen with the final report of the game.
+ */
 public class FinalReportActivity extends AppCompatActivity {
 
     @Override

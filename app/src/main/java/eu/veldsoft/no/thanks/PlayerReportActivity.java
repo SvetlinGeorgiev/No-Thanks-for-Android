@@ -5,6 +5,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Screen for the player report.
+ */
 public class PlayerReportActivity extends AppCompatActivity {
 
     /**

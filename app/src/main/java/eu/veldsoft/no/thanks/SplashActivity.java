@@ -36,12 +36,12 @@ public class SplashActivity extends AppCompatActivity {
         setTheme(R.style.no_thanks_theme);
 
         /*
-         * Call the superclass's onCreate method to perform necessary initialization.
+         * Call the super class's onCreate method to perform necessary initialization.
          */
         super.onCreate(savedInstanceState);
 
         /*
-         *  Set the content view of this activity to the layout defined in 'activity_splash.xml'.
+         * Set the content view of this activity to the layout defined in 'activity_splash.xml'.
          */
         setContentView(R.layout.activity_splash);
 

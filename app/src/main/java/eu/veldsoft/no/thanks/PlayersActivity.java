@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Screen with the players' information.
+ */
 public class PlayersActivity extends AppCompatActivity {
 
     /**
@@ -17,10 +20,12 @@ public class PlayersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         /*
          * Set the layout for this activity
          */
         setContentView(R.layout.activity_players);
+
         /*
          * Set up a click listener for the "Done" button
          */
@@ -32,6 +37,7 @@ public class PlayersActivity extends AppCompatActivity {
                          * Create an intent to pass data back to the calling activity
                          */
                         Intent intent = new Intent();
+
                         /*
                          * Retrieve and put data for each player
                          */
@@ -47,10 +53,12 @@ public class PlayersActivity extends AppCompatActivity {
                         intent.putExtra("player5Name", ((EditText) findViewById(R.id.namePlayer5)).getText().toString());
                         intent.putExtra("player6Enabled", ((CheckBox) findViewById(R.id.activePlayer6)).isChecked());
                         intent.putExtra("player6Name", ((EditText) findViewById(R.id.namePlayer6)).getText().toString());
+
                         /*
                          * Set the result of the activity to indicate success and attach the intent with data
                          */
                         setResult(AppCompatActivity.RESULT_OK, intent);
+
                         /*
                          * Finish the activity and return to the calling activity
                          */

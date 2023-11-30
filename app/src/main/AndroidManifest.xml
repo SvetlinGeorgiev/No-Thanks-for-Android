@@ -11,12 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/no_thanks_theme"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name=".FinalReportActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".PlayerReportActivity"

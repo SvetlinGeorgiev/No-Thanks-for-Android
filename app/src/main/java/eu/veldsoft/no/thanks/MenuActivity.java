@@ -12,8 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MenuActivity extends AppCompatActivity {
 
     /**
-     * This method is called when the activity is first created.
-     * It initializes the activity and sets its content view.
+     * {@inheritDoc}
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         );
 
         /*
-         *  Start host screen for multiplayer game.
+         * Start host screen for multiplayer game.
          */
         findViewById(R.id.join_game).setVisibility(View.INVISIBLE);
         findViewById(R.id.join_game).setOnClickListener(
@@ -53,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         );
 
         /*
-         *  Start host screen for multiplayer game.
+         * Start host screen for multiplayer game.
          */
         findViewById(R.id.host_game).setVisibility(View.INVISIBLE);
         findViewById(R.id.host_game).setOnClickListener(
@@ -67,7 +66,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
         /*
-         *  Application exit.
+         * Application exit.
          */
         findViewById(R.id.exit_game).setOnClickListener(
                 new View.OnClickListener() {
