@@ -148,7 +148,9 @@ class Player {
         if (cards.size() > 0) {
             for (Card card : cards) {
                 text += "\t";
+                text += "_";
                 text += card.key();
+                text += "_";
             }
         }
         text += "\n";
@@ -160,6 +162,6 @@ class Player {
         text += score();
         text += "\n";
 
-        return text;
+        return text.trim();
     }
 }
