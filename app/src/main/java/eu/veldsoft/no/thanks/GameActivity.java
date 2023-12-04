@@ -142,6 +142,7 @@ public class GameActivity extends AppCompatActivity {
          * Check which the selected item is in the options menu and depending on that star that activity
          */
         if (item.getItemId() == R.id.new_game) {
+            findViewById(R.id.table).setVisibility(View.INVISIBLE);
             startActivityForResult(new Intent(GameActivity.this, PlayersActivity.class), LAUNCH_PLAYERS_LIST_ACTIVITY);
         }
 
@@ -160,10 +161,14 @@ public class GameActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.player_report && table.inProgress() == true) {
             startActivity(new Intent(GameActivity.this, PlayerReportActivity.class).putExtra("report", table.currentPlayerReport()));
+        } else if (item.getItemId() == R.id.player_report) {
+            Toast.makeText(GameActivity.this, R.string.the_game_is_not_in_progress_message, Toast.LENGTH_LONG).show();
         }
 
-        if (item.getItemId() == R.id.end_report && table.inProgress() == true) {
+        if (item.getItemId() == R.id.end_report && table.inProgress() == false) {
             startActivity(new Intent(GameActivity.this, FinalReportActivity.class).putExtra("report", table.finalReport()));
+        } else if (item.getItemId() == R.id.end_report) {
+            Toast.makeText(GameActivity.this, R.string.the_game_not_finished_message, Toast.LENGTH_LONG).show();
         }
 
         if (item.getItemId() == R.id.help) {
@@ -194,6 +199,7 @@ public class GameActivity extends AppCompatActivity {
         if (resultCode != RESULT_OK) {
             return;
         }
+
         /*
          * Check if the result comes from launching the PlayersActivity
          */
@@ -202,6 +208,7 @@ public class GameActivity extends AppCompatActivity {
              * Initialize a list to store player names
              */
             List<String> names = new ArrayList<String>();
+
             /*
              * Check each player's status and add their name to the list if enabled
              */
@@ -233,6 +240,7 @@ public class GameActivity extends AppCompatActivity {
             if (table.newGame(names.toArray(new String[names.size()])) == false) {
                 Toast.makeText(GameActivity.this, R.string.game_was_not_started_message, Toast.LENGTH_LONG).show();
             }
+
             /*
              * Sets the visibility of the game elements to visible
              */
@@ -241,7 +249,6 @@ public class GameActivity extends AppCompatActivity {
 
         redraw();
     }
-
 
     /**
      * After change in the object model the user interface should be updated.
@@ -259,11 +266,11 @@ public class GameActivity extends AppCompatActivity {
              * Visualize the current chips on the card.
              */
             ((TextView) findViewById(R.id.currentChips)).setText("" + table.currentChips());
-
-            /*
-             * Visualize the current card on the table.
-             */
-            ((ImageView) findViewById(R.id.currentCard)).setImageResource(CARDS_IMAGES.get(table.currentCardKey()));
         }
+
+        /*
+         * Visualize the current card on the table.
+         */
+        ((ImageView) findViewById(R.id.currentCard)).setImageResource(CARDS_IMAGES.get(table.currentCardKey()));
     }
 }

@@ -66,6 +66,15 @@ class Deck {
      * @return Subset of cards to play with.
      */
     static List<Card> deal(int miss) {
-        return cards.subList(0, cards.size() + miss);
+        List<Card> subset = new ArrayList<Card>();
+
+        /*
+         * Explicit copy of the cards without removal from the deck.
+         */
+        for (int i = 0; i < cards.size() + miss; i++) {
+            subset.add(cards.get(i));
+        }
+
+        return subset;
     }
 }

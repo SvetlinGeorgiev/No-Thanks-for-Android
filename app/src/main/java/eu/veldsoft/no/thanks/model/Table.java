@@ -154,28 +154,31 @@ public class Table {
 
         for (Player p : players) {
             text += p.report();
+            text += "\n";
             text += "=== === ===";
             text += "\n";
             text += "\n";
         }
 
-        text += "The winner is: ";
-        text += "\t";
-
-        int min = players.get(0).score();
-        for (Player p : players) {
-            if (p.score() < min) {
-                min = p.score();
-            }
-        }
-
-        for (Player p : players) {
-            if (p.score() > min) {
-                continue;
-            }
-
-            text += p.name();
+        if (players.size() > 0) {
+            text += "The winner is: ";
             text += "\t";
+
+            int min = players.get(0).score();
+            for (Player p : players) {
+                if (p.score() < min) {
+                    min = p.score();
+                }
+            }
+
+            for (Player p : players) {
+                if (p.score() > min) {
+                    continue;
+                }
+
+                text += p.name();
+                text += "\t";
+            }
         }
 
         return text.trim();
@@ -245,7 +248,7 @@ public class Table {
      * @return True if the game is in progress, false otherwise.
      */
     public boolean inProgress() {
-        return players.size() > 0;
+        return cards.size() > 0;
     }
 
     /**
