@@ -11,12 +11,10 @@ public interface ArtificialIntelligence {
      */
     public static enum Choice {TAKE_IT, NO_THANKS}
 
-    ;
-
     /**
      * Decision making procedure.
      *
-     * @param table The table invormation.
+     * @param table The table information.
      * @return The decision taken.
      */
     public Choice decision(Table table);
