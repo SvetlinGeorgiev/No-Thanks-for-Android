@@ -9,10 +9,10 @@ android {
 
     defaultConfig {
         applicationId "eu.veldsoft.no.thanks"
-        minSdk 33
+        minSdk 25
         targetSdk 33
-        versionCode 1
-        versionName "1.00"
+        versionCode 3
+        versionName "1.02"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
